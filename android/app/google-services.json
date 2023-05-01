@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "736591037754",
+    "project_id": "messagaty",
+    "storage_bucket": "messagaty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736591037754:android:c8ae582a1386ed59507c03",
+        "android_client_info": {
+          "package_name": "com.example.messagaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736591037754-tstr1hn1ffnocp0g8351qvdj74pbv7c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk2DPNGbst_YTsJWbd8macjIUh6xZHhO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736591037754-tstr1hn1ffnocp0g8351qvdj74pbv7c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

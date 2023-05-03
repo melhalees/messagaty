@@ -1,11 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../theme.dart';
 
-class ChatScreenDateLabelWidget extends StatelessWidget {
-  const ChatScreenDateLabelWidget({Key? key, required this.label}) : super(key: key);
+class ChatScreenDateLabelWidget extends StatefulWidget {
+  const ChatScreenDateLabelWidget({Key? key, required this.dateTime}) : super(key: key);
 
-  final String label;
+  final DateTime dateTime;
+
+  @override
+  State<ChatScreenDateLabelWidget> createState() => _ChatScreenDateLabelWidgetState();
+}
+
+class _ChatScreenDateLabelWidgetState extends State<ChatScreenDateLabelWidget> {
+
+  late String dayInfo;
+
+  @override
+  void initState() {
+    final createdAt = Jiffy(widget.dateTime);
+    final now = DateTime.now();
+
+    if (Jiffy(createdAt).isSame(now, Units.DAY)) {
+      dayInfo = 'TODAY';
+    } else if (Jiffy(createdAt)
+        .isSame(now.subtract(const Duration(days: 1)), Units.DAY)) {
+      dayInfo = 'YESTERDAY';
+    } else if (Jiffy(createdAt).isAfter(
+      now.subtract(const Duration(days: 7)),
+      Units.DAY,
+    )) {
+      dayInfo = createdAt.EEEE;
+    } else if (Jiffy(createdAt).isAfter(
+      Jiffy(now).subtract(years: 1),
+      Units.DAY,
+    )) {
+      dayInfo = createdAt.MMMd;
+    } else {
+      dayInfo = createdAt.MMMd;
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +56,7 @@ class ChatScreenDateLabelWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12),
             child: Text(
-              label,
+              dayInfo,
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,

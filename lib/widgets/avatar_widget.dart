@@ -43,7 +43,7 @@ class AvatarWidget extends StatelessWidget {
   }
 
   Widget _avatar(BuildContext context) {
-    if (url != null) {
+    if (url != null && url!.isNotEmpty) {
       return CircleAvatar(
         radius: radius,
         backgroundImage: CachedNetworkImageProvider(url!),

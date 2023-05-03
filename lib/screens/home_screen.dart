@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:messagaty/extensions/extensions.dart';
 import 'package:messagaty/pages/pages.dart';
 import 'package:messagaty/widgets/widgets.dart';
 
@@ -38,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -67,7 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 24.0),
-            child: AvatarWidget.small(url: Helpers.randomPictureUrl(),),
+            child: AvatarWidget.small(
+              url: context.currentUserImage,
+              onTap: () {
+                _onItemSelected(3);
+              },
+            ),
           ),
         ],
       ),

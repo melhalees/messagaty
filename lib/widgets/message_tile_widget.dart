@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:messagaty/models/message_tile_data_model.dart';
-import 'package:messagaty/screens/chat_screen.dart';
+import 'package:messagaty/extensions/extensions.dart';
 import 'package:messagaty/widgets/avatar_widget.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
+import 'package:messagaty/screens/screens.dart';
+import 'package:messagaty/builder_widgets/builder_widgets.dart';
 
-import '../theme.dart';
+import '../helpers.dart';
 
 class MessageTileWidget extends StatelessWidget {
-  const MessageTileWidget({Key? key, required this.data}) : super(key: key);
+  const MessageTileWidget({Key? key, required this.channel}) : super(key: key);
 
-  final MessageTileDataModel data;
+  final Channel channel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(ChatScreen.openChat(lastMessageTileDataModel: data));
+        Navigator.of(context).push(ChatScreen.routeWithChannel(channel));
       },
       child: Container(
         height: 85,
@@ -33,7 +35,7 @@ class MessageTileWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: AvatarWidget.medium(url: data.senderImage),
+                child: AvatarWidget.medium(url: Helpers.getChannelImage(channel, context.currentUser!)),
               ),
               Expanded(
                   child: Column(
@@ -43,7 +45,7 @@ class MessageTileWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5.0),
                         child: Text(
-                          data.senderName,
+                          Helpers.getChannelName(channel, context.currentUser!),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: const TextStyle(
@@ -53,16 +55,7 @@ class MessageTileWidget extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 20,
-                          child: Text(
-                            data.messageText,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textFaded,
-                            ),
-                          )
+                          child: LastMessageBuilderWidget(channel: channel),
                       )
                     ],
                   ),
@@ -76,34 +69,11 @@ class MessageTileWidget extends StatelessWidget {
                     const SizedBox(
                       height: 4,
                     ),
-                    Text(
-                      data.messageDateTimeAsString.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 11,
-                        letterSpacing: -0.2,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.textFaded,
-                      ),
-                    ),
+                    LastMessageAtBuilderWidget(channel: channel),
                     const SizedBox(
                       height: 8,
                     ),
-                    Container(
-                      width: 18,
-                      height: 18,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: AppColors.secondary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text(
-                        '1',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: AppColors.textLight,
-                        ),
-                      ),
-                    )
+                    Center(child: UnreadMessagesCountBuilderWidget(channel: channel))
                   ],
                 ),
               )

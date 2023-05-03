@@ -51,28 +51,27 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               NavigationBarItemWidget(
                 label: 'Calls',
                 icon: Ionicons.call,
-                isSelected: (selectedIndex == 2),
-                index: 2,
+                isSelected: (selectedIndex == 1),
+                index: 1,
                 onTap: _onItemSelected,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: GlowingActionButtonWidget(color: AppColors.secondary, icon: Ionicons.add, onPressed: () {
-
                 }),
               ),
               NavigationBarItemWidget(
                 label: 'Contacts',
                 icon: Ionicons.people,
-                isSelected: (selectedIndex == 3),
-                index: 3,
+                isSelected: (selectedIndex == 2),
+                index: 2,
                 onTap: _onItemSelected,
               ),
               NavigationBarItemWidget(
                 label: 'Profile',
                 icon: Ionicons.person_circle,
-                isSelected: (selectedIndex == 1),
-                index: 1,
+                isSelected: (selectedIndex == 3),
+                index: 3,
                 onTap: _onItemSelected,
               ),
             ],

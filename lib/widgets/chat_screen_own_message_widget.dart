@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 import '../theme.dart';
 
@@ -6,11 +8,9 @@ class ChatScreenOwnMessageWidget extends StatelessWidget {
   const ChatScreenOwnMessageWidget({
     Key? key,
     required this.message,
-    required this.messageDate,
   }) : super(key: key);
 
-  final String message;
-  final String messageDate;
+  final Message message;
 
   static const _borderRadius = 26.0;
 
@@ -36,7 +36,8 @@ class ChatScreenOwnMessageWidget extends StatelessWidget {
               child: Padding(
                 padding:
                 const EdgeInsets.symmetric(horizontal: 12.0, vertical: 20),
-                child: Text(message,
+                child: Text(
+                    message.text ?? '',
                     style: const TextStyle(
                       color: AppColors.textLight,
                     )),
@@ -45,7 +46,7 @@ class ChatScreenOwnMessageWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                messageDate,
+                Jiffy(message.createdAt.toLocal()).jm,
                 style: const TextStyle(
                   color: AppColors.textFaded,
                   fontSize: 10,

@@ -19,16 +19,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final pages = const [
     MessagesPage(),
-    NotificationsPage(),
     CallsPage(),
     ContactsPage(),
+    ProfilePage()
   ];
 
   final pageTitles = const [
     'Messages',
-    'Notifications',
     'Calls',
     'Contacts',
+    'Profile'
   ];
 
   void _onItemSelected(int index) {
@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: Align(
           alignment: Alignment.centerRight,
           child: FilledIconButtonWidget(
-            icon: Ionicons.search_outline,
+            icon: Ionicons.search,
             onTap: () {},
           ),
         ),

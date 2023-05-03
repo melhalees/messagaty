@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:messagaty/theme.dart';
+import 'package:messagaty/widgets/glowing_action_button_widget.dart';
 import 'package:messagaty/widgets/navigation_bar_item_widget.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
@@ -35,36 +37,42 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         top: false,
         bottom: true,
         child: Padding(
-          padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
+          padding: const EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               NavigationBarItemWidget(
                 label: 'Messages',
-                icon: Ionicons.chatbubbles_outline,
+                icon: Ionicons.chatbubbles,
                 isSelected: (selectedIndex == 0),
                 index: 0,
                 onTap: _onItemSelected,
               ),
               NavigationBarItemWidget(
-                label: 'Notifications',
-                icon: Ionicons.notifications_outline,
-                isSelected: (selectedIndex == 1),
-                index: 1,
-                onTap: _onItemSelected,
-              ),
-              NavigationBarItemWidget(
                 label: 'Calls',
-                icon: Ionicons.call_outline,
+                icon: Ionicons.call,
                 isSelected: (selectedIndex == 2),
                 index: 2,
                 onTap: _onItemSelected,
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: GlowingActionButtonWidget(color: AppColors.secondary, icon: Ionicons.add, onPressed: () {
+
+                }),
+              ),
               NavigationBarItemWidget(
                 label: 'Contacts',
-                icon: Ionicons.people_outline,
+                icon: Ionicons.people,
                 isSelected: (selectedIndex == 3),
                 index: 3,
+                onTap: _onItemSelected,
+              ),
+              NavigationBarItemWidget(
+                label: 'Profile',
+                icon: Ionicons.person_circle,
+                isSelected: (selectedIndex == 1),
+                index: 1,
                 onTap: _onItemSelected,
               ),
             ],

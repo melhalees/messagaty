@@ -59,7 +59,7 @@ class AppTheme {
     primaryTextTheme: const TextTheme(
       titleLarge: TextStyle(color: AppColors.textDark),
     ),
-    iconTheme: const IconThemeData(color: AppColors.iconDark), colorScheme: lightBase.colorScheme.copyWith(secondary: accentColor).copyWith(background: _LightColors.background),
+    iconTheme: const IconThemeData(color: AppColors.iconDark), colorScheme: lightBase.colorScheme.copyWith(secondary: AppColors.secondary).copyWith(background: _LightColors.background),
   );
 
   /// Dark theme and its settings.
@@ -86,6 +86,6 @@ class AppTheme {
     primaryTextTheme: const TextTheme(
       titleLarge: TextStyle(color: AppColors.textLight),
     ),
-    iconTheme: const IconThemeData(color: AppColors.iconLight), colorScheme: darkBase.colorScheme.copyWith(secondary: accentColor).copyWith(background: _DarkColors.background),
+    iconTheme: const IconThemeData(color: AppColors.iconLight), colorScheme: darkBase.colorScheme.copyWith(secondary: AppColors.secondary).copyWith(background: _DarkColors.background),
   );
 }

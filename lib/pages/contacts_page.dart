@@ -10,16 +10,21 @@ class ContactsPage extends StatefulWidget {
 }
 
 class _ContactsPageState extends State<ContactsPage> {
-  late final userListController = StreamUserListController(
+
+  late final StreamUserListController userListController =  StreamUserListController(
     client: StreamChatCore.of(context).client,
-    limit: 20,
-    filter: Filter.notEqual('id', StreamChatCore.of(context).currentUser!.id),
+    sort: [const SortOption('name')],
+    filter: Filter.in_('phone_number', const [
+      '+201023407421',
+      '+201122495971',
+      '+201553306469'
+    ]),
   );
 
   @override
   void initState() {
-    userListController.doInitialLoad();
     super.initState();
+    userListController.doInitialLoad();
   }
 
   @override
@@ -27,6 +32,7 @@ class _ContactsPageState extends State<ContactsPage> {
     userListController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {

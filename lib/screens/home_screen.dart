@@ -5,12 +5,17 @@ import 'package:messagaty/pages/pages.dart';
 import 'package:messagaty/widgets/widgets.dart';
 
 import '../helpers.dart';
+import '../logger.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
+  static Route get route => MaterialPageRoute(
+    builder: (context) => const HomeScreen(),
+  );
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -43,28 +48,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        iconTheme: Theme.of(context).iconTheme,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
         leadingWidth: 54,
         leading: Align(
           alignment: Alignment.centerRight,
           child: FilledIconButtonWidget(
             icon: Ionicons.search,
-            onTap: () {},
+            onTap: () {
+              logger.i('TODO: Search button');
+            },
           ),
         ),
         title: ValueListenableBuilder<String>(
           valueListenable: title,
-          builder: (context, value, child) {
-            return Text(
-                value,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                ),
-            );
-          },
+          builder: (context, value, child) => Text(value),
         ),
         actions: [
           Padding(

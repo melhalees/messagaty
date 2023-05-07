@@ -15,3 +15,4 @@ export 'chat_screen_send_message_bar_widget.dart';
 export 'display_error_message_widget.dart';
 export 'contact_tile_widget.dart';
 export 'chat_screen_message_list_widget.dart';
+export 'primary_button_widget.dart';
